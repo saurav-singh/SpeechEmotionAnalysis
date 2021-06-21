@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Speech Emotion Analyzer</title>
+
+    <!-- METADATA -->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- CSS -->
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="JS/lib/WebAudioRecorder.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src='Js/main.js'></script>
+    <script src='Js/chart.js'></script>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <h2 id="header">Speech Emotion Analyzer</h2>
+
+    <!-- APP CONTENT -->
+    <div class="content">
+
+        <!-- STATUS TEXT -->
+        <div class="status"> Current Status:
+            <span id="status"> Press Start Recording to begin </span>
+        </div>
+
+        <!-- RECORD CONTROLLER BUTTONS -->
+        <div class="record_button">
+            <button id="start" onclick="start()">Start Recording</button>
+            <button id="stop" onclick="stop()">Stop Recording</button>
+        </div>
+
+        <!-- RESULTS FOR THE ANALYZED AUDIO -->
+        <div id="audio_result">
+            <canvas id="result_chart"></canvas>
+        </div>
+
+        <!-- DOWNLOAD / PLAYBACK RECORDED AUDIO -->
+        <div id="audio_sample">
+            <audio id="audio_sample_player" controls></audio>
+            <a id="audio_sample_dl" download=""> Download Recording </a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
