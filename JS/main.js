@@ -91,6 +91,7 @@ const retrieve_emotion = async (BLOB) => {
 
 const generate_report = async (response) => {
 
+
   const result = await response;
 
   // Display Error Status
@@ -99,29 +100,44 @@ const generate_report = async (response) => {
     return;
   }
 
-  // Display Complete Status
-  $("#status").html("Analysis complete! View results below.");
-  $("#status").css("color", "springgreen");
+
 
   // Process result data
   let labels = [];
   let values = [];
 
-  for (const label in result) {
-    labels.push(label);
+  try {
 
-    let value = result[label];
-    // Convert value from [0-1] range to [0-100]%
-    // value = parseFloat((value * 100).toFixed(2));
-    value = parseFloat((value * 100));
-    values.push(value);
+    for (const label in result) {
+      labels.push(label);
+
+      let value = result[label];
+      // Convert value from [0-1] range to [0-100]%
+      // value = parseFloat((value * 100).toFixed(2));
+      value = parseFloat((value * 100));
+      values.push(value);
+    }
+
   }
-  
+  catch (error) {
+    alert("Error, Please try again later");
+  }
+
+  // Display Complete Status
+  if (labels.length == 0) {
+    $("#status").html("Insufficient audio data! Please try again.");
+    return;
+  }
+
   // Setup Chart
   setup_chart(labels, values);
 
   // Render Chart
   render_chart();
+
+  // Display Complete Status
+  $("#status").html("Analysis complete! View results below.");
+  $("#status").css("color", "springgreen");
 };
 
 
